@@ -20,7 +20,7 @@ type Enforcer struct {
 	EnvPrefix 			string
 	Requirements 		[]Value
 	dcdr 				*decider.Decider
-	v 				*viper.Viper
+	v 					*viper.Viper
 }
 
 func NewEnforcer(inits ...Initializer) *Enforcer {
@@ -75,7 +75,7 @@ func (e *Enforcer)  Init() error {
 			if val, exists := os.LookupEnv(key); val != "" && exists == true {
 				e.v.Set(key, val)
 			} else {
-				typ, err := e..Select("Please provide a type for the following key: "+key, []string{"string", "int", "bool", "[]slice"}, &input.Options{
+				typ, err := e.input.Select("Please provide a type for the following key: "+key, []string{"string", "int", "bool", "[]slice"}, &input.Options{
 					Default: "string",
 					Loop:         true,
 					Required:     true,

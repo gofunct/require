@@ -14,9 +14,10 @@ type Decider struct {
 	menu *wmenu.Menu
 }
 
-func NewDecider() *Decider {
+func NewDecider(q string) *Decider {
 	return &Decider{
 		ask: input.DefaultUI(),
+		menu: wmenu.NewMenu(q),
 	}
 }
 
